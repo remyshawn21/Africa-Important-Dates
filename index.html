@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TVS NSE1 Important Dates</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f0f3f8; --surface: #fff; --surface2: #f5f7fa; --border: #dde2ec;
+    --tvs-blue: #1B3F8B; --tvs-blue-dark: #142f6a; --tvs-blue-light: #e6ecf8;
+    --tvs-red: #CC1313; --tvs-red-dark: #a80f0f;
+    --executed: #1a7a4a; --executed-bg: #e8f5ee;
+    --postponed: #CC1313; --postponed-bg: #fce8e8;
+    --yet: #92650a; --yet-bg: #fffbe6;
+    --update-req: #7c2d12; --update-req-bg: #fff0e6;
+    --text: #1a1f2e; --muted: #6b7280;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+  .top-strip { height: 4px; background: linear-gradient(90deg, var(--tvs-red) 0%, var(--tvs-blue) 60%); }
+
+  header {
+    background: var(--tvs-blue); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    gap: 16px; height: 72px;
+    box-shadow: 0 3px 16px rgba(27,63,139,0.35);
+  }
+  .header-left { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+  .tvs-logo { height: 42px; background: white; border-radius: 7px; padding: 5px 12px; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .tvs-logo img { height: 30px; width: auto; display: block; }
+  .tvs-logo-text { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--tvs-blue); background: white; padding: 6px 14px; border-radius: 7px; }
+  .header-divider { width: 1px; height: 34px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+  .header-title h1 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: white; white-space: nowrap; }
+  .header-title p { font-family: 'Poppins', sans-serif; font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.7px; font-weight: 400; white-space: nowrap; }
+  .header-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .header-btns { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .updated { font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+  .updated strong { color: rgba(255,255,255,0.85); }
+
+  .dropdown-wrap { position: relative; flex-shrink: 0; }
+  .dropdown-btn {
+    background: var(--tvs-red); color: white; border: none;
+    padding: 10px 14px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+    border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: background 0.15s, transform 0.1s; min-width: 140px; justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(204,19,19,0.4); white-space: nowrap;
+  }
+  .dropdown-btn:hover { background: var(--tvs-red-dark); }
+  .dropdown-btn:active { transform: scale(0.98); }
+  .dropdown-btn.blue-btn { background: var(--tvs-blue-dark); box-shadow: 0 2px 8px rgba(27,63,139,0.4); }
+  .dropdown-btn.blue-btn:hover { background: #0e2152; }
+  .dropdown-btn.active { background: var(--tvs-blue-dark); box-shadow: 0 2px 8px rgba(27,63,139,0.4); }
+  .dropdown-btn .arrow { width: 15px; height: 15px; transition: transform 0.2s; flex-shrink: 0; }
+  .dropdown-btn.open .arrow { transform: rotate(180deg); }
+  .dropdown-menu {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; overflow-y: auto; max-height: 360px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+    transition: opacity 0.18s, transform 0.18s; z-index: 200; min-width: 210px;
+  }
+  .dropdown-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .dropdown-item {
+    padding: 11px 16px; font-size: 13px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    transition: background 0.12s; border-bottom: 1px solid var(--border); color: var(--text);
+  }
+  .dropdown-item:last-child { border-bottom: none; }
+  .dropdown-item:hover { background: var(--tvs-blue-light); color: var(--tvs-blue); }
+  .dropdown-item.selected { background: var(--tvs-blue-light); color: var(--tvs-blue); font-weight: 600; }
+  .event-count { font-size: 11px; background: var(--surface2); color: var(--muted); padding: 2px 8px; border-radius: 20px; font-weight: 400; flex-shrink: 0; }
+  .dropdown-item.selected .event-count { background: var(--tvs-blue); color: white; }
+  .dropdown-item .check { width:16px; height:16px; border:2px solid var(--border); border-radius:4px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+  .dropdown-item.selected .check { background:var(--tvs-blue); border-color:var(--tvs-blue); }
+  .dropdown-item.selected .check::after { content:'✓'; color:white; font-size:10px; font-weight:700; }
+  .dropdown-divider { border:none; border-top:2px solid var(--tvs-red); margin:4px 0; }
+  .dropdown-action { padding:10px 16px; font-size:12px; font-weight:600; color:var(--tvs-blue); cursor:pointer; text-align:center; transition:background 0.12s; }
+  .dropdown-action:hover { background:var(--tvs-blue-light); }
+
+  .view-tabs {
+    display: flex; gap: 4px; padding: 0 40px; background: var(--tvs-blue-dark);
+  }
+  .view-tab {
+    background: transparent; border: none; color: rgba(255,255,255,0.6);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    padding: 12px 18px; cursor: pointer; border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s; display: flex; align-items: center; gap: 8px;
+  }
+  .view-tab:hover { color: rgba(255,255,255,0.85); }
+  .view-tab.active { color: white; border-bottom-color: var(--tvs-red); }
+  .tab-count {
+    font-size: 10px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);
+    padding: 2px 8px; border-radius: 20px; font-weight: 600;
+  }
+  .view-tab.active .tab-count { background: var(--tvs-red); color: white; }
+
+  .filter-bar {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 10px 40px; background: var(--tvs-blue-light);
+    border-bottom: 1px solid #c5d3ef; min-height: 44px;
+  }
+  .filter-label { font-size: 11px; font-weight: 600; color: var(--tvs-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
+  .filter-tag { display: flex; align-items: center; gap: 6px; background: var(--tvs-red); color: white; padding: 4px 10px 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .filter-tag.blue { background: var(--tvs-blue); }
+  .filter-tag.green { background: #1a7a4a; }
+  .filter-tag button { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; display: flex; align-items: center; transition: color 0.1s; }
+  .filter-tag button:hover { color: white; }
+  .no-filters { font-size: 12px; color: var(--muted); font-style: italic; }
+
+  .stats-bar {
+    display: flex; gap: 10px; padding: 14px 40px;
+    background: white; border-bottom: 1px solid var(--border);
+    overflow-x: auto; flex-wrap: wrap; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .stat-pill { display: flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; border: 1px solid transparent; }
+  .stat-pill .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stat-pill.total    { background: var(--tvs-blue-light); color: var(--tvs-blue); border-color: #c5d3ef; }
+  .stat-pill.total .dot { background: var(--tvs-blue); }
+  .stat-pill.executed { background: var(--executed-bg); color: var(--executed); border-color: #b8dfc9; }
+  .stat-pill.executed .dot { background: var(--executed); }
+  .stat-pill.postponed { background: var(--postponed-bg); color: var(--postponed); border-color: #f5b8b8; }
+  .stat-pill.postponed .dot { background: var(--postponed); }
+  .stat-pill.yet { background: var(--yet-bg); color: var(--yet); border-color: #e8d48a; }
+  .stat-pill.yet .dot { background: var(--yet); }
+
+  main { padding: 28px 40px 40px; }
+  .month-section { margin-bottom: 36px; }
+  .month-title {
+    font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800;
+    letter-spacing: -0.5px; margin-bottom: 16px;
+    display: flex; align-items: baseline; gap: 10px;
+    color: var(--tvs-blue); border-left: 4px solid var(--tvs-red); padding-left: 14px;
+    animation: fadeUp 0.3s ease;
+  }
+  .month-title .year { color: var(--muted); font-size: 16px; font-weight: 400; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .country-card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .country-card:hover { border-color: var(--tvs-blue); box-shadow: 0 6px 24px rgba(27,63,139,0.13); transform: translateY(-2px); }
+  .country-header { padding: 13px 16px; display: flex; align-items: center; gap: 10px; background: var(--tvs-blue); border-bottom: 3px solid var(--tvs-red); }
+  .country-flag { width: 30px; height: 30px; border-radius: 6px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+  .country-name { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; flex: 1; color: white; }
+  .country-event-count { font-size: 11px; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.12); padding: 2px 9px; border-radius: 20px; }
+  .event-list { padding: 6px 0; }
+
+  .event-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 16px; border-bottom: 1px solid rgba(0,0,0,0.04); transition: background 0.1s; cursor: default; }
+  .event-row:last-child { border-bottom: none; }
+  .event-row.has-desc { cursor: pointer; }
+  .event-row.has-desc:hover { background: var(--tvs-blue-light); }
+  .event-row.warn-desc:hover { background: #fff8f0; }
+  .event-row:not(.has-desc):not(.warn-desc):hover { background: var(--surface2); }
+
+  .event-date { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; min-width: 78px; padding-top: 2px; font-variant-numeric: tabular-nums; }
+  .event-info { flex: 1; min-width: 0; }
+  .event-name { font-size: 12.5px; line-height: 1.4; color: var(--text); word-break: break-word; }
+  .event-category { font-size: 10px; color: var(--muted); margin-top: 2px; font-style: italic; }
+  .event-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+
+  .status-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.4px; }
+  .badge-executed  { background: var(--executed-bg);  color: var(--executed); }
+  .badge-postponed { background: var(--postponed-bg); color: var(--postponed); }
+  .badge-yet       { background: var(--yet-bg);       color: var(--yet); }
+  .badge-update-req { background: var(--update-req-bg); color: var(--update-req); border: 1px solid #f97316; }
+  .badge-unknown   { background: var(--surface2);      color: var(--muted); }
+
+  .desc-indicator { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; white-space: nowrap; display: flex; align-items: center; gap: 3px; }
+  .desc-indicator.has  { background: #e6ecf8; color: var(--tvs-blue); }
+  .desc-indicator.warn { background: #fce8e8; color: var(--postponed); }
+
+  /* PR TABLE VIEW */
+  .pr-section { margin-bottom: 36px; }
+  .pr-section-title {
+    font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800;
+    color: var(--tvs-blue); border-left: 4px solid var(--tvs-red);
+    padding-left: 14px; margin-bottom: 16px; animation: fadeUp 0.3s ease;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pr-badge-count { font-size: 12px; background: var(--tvs-red); color: white; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
+  .pr-table-wrap { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; }
+  .pr-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+  .pr-table thead tr { background: var(--tvs-blue); }
+  .pr-table thead th { padding: 12px 16px; text-align: left; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .pr-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+  .pr-table tbody tr:last-child { border-bottom: none; }
+  .pr-table tbody tr:hover { background: var(--tvs-blue-light); }
+  .pr-table tbody td { padding: 11px 16px; font-size: 13px; color: var(--text); vertical-align: middle; }
+  .pr-table tbody td.date-col { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pr-table tbody td.cat-col { font-size: 11px; }
+  .pr-table tbody td.country-col { font-size: 12px; font-weight: 600; }
+  .cat-chip { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; background: var(--tvs-blue-light); color: var(--tvs-blue); white-space: nowrap; }
+  .export-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .export-btn {
+    background: #1a7a4a; color: white; border: none; padding: 9px 16px;
+    border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background 0.15s;
+    box-shadow: 0 2px 6px rgba(26,122,74,0.4);
+  }
+  .export-btn:hover { background: #145c38; }
+
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(10,15,30,0.6);
+    z-index: 1000; display: flex; align-items: center; justify-content: center;
+    padding: 20px; opacity: 0; pointer-events: none;
+    transition: opacity 0.2s; backdrop-filter: blur(3px);
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white; border-radius: 16px; width: 100%; max-width: 520px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+    transform: translateY(16px) scale(0.97);
+    transition: transform 0.25s ease; overflow: hidden;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-header {
+    background: var(--tvs-blue); padding: 18px 22px;
+    border-bottom: 3px solid var(--tvs-red);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .modal-header-info { flex: 1; min-width: 0; }
+  .modal-country { font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+  .modal-event { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: white; line-height: 1.3; }
+  .modal-meta { display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .modal-date { font-size: 11px; color: rgba(255,255,255,0.65); }
+  .modal-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
+  .modal-close:hover { background: rgba(255,255,255,0.25); }
+  .modal-body { padding: 22px; }
+  .modal-section-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; }
+  .modal-description { font-size: 14px; line-height: 1.7; color: var(--text); background: var(--surface2); border-radius: 10px; padding: 14px 16px; border-left: 3px solid var(--tvs-blue); }
+  .modal-cat-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .modal-cat-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; padding: 0 40px 32px; font-size: 12px; color: var(--muted); align-items: center; }
+  .legend span { font-weight: 600; color: var(--tvs-blue); margin-right: 4px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    header { height: auto; padding: 10px 14px 12px; flex-direction: column; align-items: stretch; gap: 0; }
+    .header-left { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .tvs-logo { height: 34px; padding: 4px 9px; flex-shrink: 0; }
+    .tvs-logo img { height: 24px; }
+    .header-divider { display: none; }
+    .header-title h1 { font-size: 13px; white-space: normal; line-height: 1.3; }
+    .header-title p { display: block; font-size: 9px; margin-top: 1px; }
+    .header-right { width: 100%; flex-direction: column; align-items: stretch; gap: 6px; }
+    .updated { display: block; font-size: 10px; text-align: right; }
+    .header-btns { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 6px; }
+    .dropdown-wrap { flex: 1; }
+    .dropdown-btn { width: 100%; min-width: 0; font-size: 10px; font-weight: 700; padding: 9px 8px; justify-content: center; gap: 4px; box-shadow: none; }
+    .dropdown-btn .arrow { width: 12px; height: 12px; }
+    .view-tabs { padding: 0 16px; overflow-x: auto; }
+    .view-tab { padding: 10px 12px; font-size: 11px; white-space: nowrap; }
+    .filter-bar { padding: 8px 16px; gap: 6px; }
+    .stats-bar { padding: 10px 16px; gap: 8px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .stat-pill { font-size: 11px; padding: 5px 10px; }
+    main { padding: 16px 16px 40px; }
+    .month-section { margin-bottom: 28px; }
+    .month-title { font-size: 18px; padding-left: 10px; margin-bottom: 12px; }
+    .month-title .year { font-size: 14px; }
+    .country-grid { grid-template-columns: 1fr; gap: 10px; }
+    .country-header { padding: 11px 14px; }
+    .country-name { font-size: 13px; }
+    .country-flag { width: 26px; height: 26px; font-size: 15px; }
+    .event-row { padding: 9px 14px; gap: 8px; }
+    .event-date { min-width: 68px; font-size: 10px; }
+    .event-name { font-size: 12px; }
+    .status-badge { font-size: 9px; padding: 2px 6px; }
+    .desc-indicator { font-size: 9px; padding: 2px 6px; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal { border-radius: 20px 20px 0 0; max-width: 100%; max-height: 85vh; overflow-y: auto; transform: translateY(100%); }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header { padding: 16px 18px; }
+    .modal-event { font-size: 15px; }
+    .modal-body { padding: 18px; }
+    .modal-description { font-size: 13px; }
+    .legend { padding: 0 16px 24px; gap: 12px; font-size: 11px; }
+    #monthMenu, #countryMenu, #requiresPRMenu, #timePeriodMenu { min-width: 180px; right: 0; left: auto; }
+    .pr-table tbody td { font-size: 12px; padding: 9px 12px; }
+    .pr-table thead th { font-size: 10px; padding: 10px 12px; }
+    .export-bar { flex-direction: column; align-items: stretch; }
+    .export-btn { justify-content: center; }
+    .pr-section-title { font-size: 17px; }
+  }
+  @media (max-width: 380px) {
+    .header-title h1 { font-size: 11px; }
+    .dropdown-btn { font-size: 9px; padding: 8px 5px; }
+    .month-title { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-strip"></div>
+
+<header>
+  <div class="header-left">
+    <div class="tvs-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCABdAQcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKiLDnB5789PwzTLmZYIHlZtiIu5ie1fiB8Xf2kvGni/4o+K9Y0rxlrFnpNxqU/2S3tNQkEMcQfbGEAPQqAePWvZy3LKmZylGErcqPPxmMjhEnJXufuH5g/yR/jR5g/yR/jX4HL8cviGxbb468Qg+n9oyll/2gCRkUn/AAvH4hgkf8J14g5ONo1GX73oMsSa9/8A1Vrf8/UeZ/bVPbkZ++W//P8Ak0gbsc+5/wA9K/BA/HD4jj/mefEXTO1tSk+769Qa+zP2d9c+ITfsT/EnxRa3niDxN4p13UZNP0iRZHuZ4kVUTzU5+X52k6f3RXDi8gqYSEZyqJ3aX3+Z00MzjXk4qLVlc/STePX9R/jRv/z/AJNfgfN8aviPDLLBJ428RRujkEHUpMqwG1gfm7Gug8K+KPjn8Rjd2/hTW/FurXcIAb7LeSuIWP3TJlvlB9q6pcM1IRc5VopGMc3jKXKoO5+56ufXj6cH6GneYvr+or4J/wCCiGvePvB/g3wlovg8a5b6JpMIuNX1+xnZFXaFiRJHyCSxJY+p5r4E/wCF2fERlfPjvxAP+4k//wAVXHgchqY6iq0aiSZtiMzjh58jg2fvgWwOpz+f6Cl3BQSTx3J6V8D/ALJlzqfwW+B+tfG74ueKdYuLe+t0fTbHUbmRgkBICskbN80kzEFeM427cZNfNfxs/wCCgnxO+K2pzwaJqUvgjw88n7ix0tx9qKf9NZhgl/ZCBWVDJK+KrypUJJxi7OXS/l1fyRvUzCnSpxnPRvp1P2Eku0jOHlVT6FgP606O4En3Wz7ZB/ka/ASLxD4x1yOa5j1fxFqSxyeXJNHdXEsaN6Eqev04rp/g/wCKPiF4i+Ifh/w1oPjXX9PvNXvYbTzLfUpNyhn2sQrtjhST+FenPhlxi5e2Wm+hwxzeMpKLg9T93aKztJtH0+wt7V7ia5aGJIzNM5ZpCByxJ6k+tW5gxTgkfQ18SfQk1FeTePPiT458N3UkXh/4cXniaCH7102pRWwb/cTDsf8AgRWsb4UftUeFvidqMmjzi68L+JIm8qTStWZUZn9I26P+GK5ZYqlGfs5Oz+av96R7NPJ8dVwssZShzQjq+WUZOK7yUW5RXm0ke5UVSa8SGMvK4RAM7mYAfnmsfT/HWg6xftZWWu2NzdqdpgguFd8/7o5rocknZs8mMJSTlFXS38vU6Wim7h/epdw9RVEDZCQvHFeFfHb9qjQPgbcJpk1pe654gmi86LT7X92qL/fklb5Qv+7ub/ZrV/aS+Kdz8L/hnqGqWOq2enamX8m1e7Bcs3zDCRjl2zgY6d6+Q/Bn7PfiH4iRy+PPjBr9x4e8Op+9nub+X/SrpP7qgnbCp45xk5+XFeJj8ZWpyVDCq8979EvM/ReGMhwGKpvM85qcuHi+VRTfPUl2iktfO2vS6V2dK3/BQ7xjeXjRaf4M02TaebY3Es0u36oOv/Aa9a+DX7Zlp8SPEUXh7XdDvPCuuTH9yNzz28vsXaNDGfZl2/7VfPniD9qaw8E2/wDYPwj8L6f4e0a24/ta/tBPc3P+2Aeg/wBp8n121wWp/tJfEHWPsw1LVre7iWeKd/Ls4YbiRVdGKLIBkBgCCM4IJr56Gazw8051+fulFW+TP1uvwRQzTDN4fLI4dNe63Vlz+TcLTj/263fzT1P1dUnatPrgvhd8U9G+LPhW11vQ7gyQuuJLdm/ewv8A3GHr713tfcwnGpFTg7pn8zV6FXC1ZUK8XGcXZp7phRRRVmAUUUUAFFFFAHP+MtCufE3hXWNJttRm0m4v7SS2iv4VDSW5dMb1U9SDyM9DXxx4B/4JceFPAvi7QtavPGGoa3ZaXPHOdNmsIo4pwmMK5DcA8cD0r7m2j0qtd3EdvC80h2xxq0jN6BetddHF4jDRlGjPlUtznqUKdZp1Fex+Qn/BSLxNaav+0ZNpOnw28NtodhDZkW6BR5rfO2QO43BfoMVkf8E+/Acfjr9prQTNbrPY6TbXGpzIyBh8oAUEH/adB+NeQfGbxk3xB+LXjLxE7+Z/aWq3EqFTkFN+1CP+Aqp/Gvtr/gk14G3N8QPGsqLhfs+jWz9+B50uD7kwA/7o9K/T8Y3l+Tcl9VFL5v8ApnyGHtiMw5nte56p8fv+Cedv8ePiZfeLj44k0C3uIYYYtMt9KSeOPy0wxDb0I3Hk+te/fAD4R2vwN+FeheC7O8OpRaYkgN48YjM7SSPKz4DNgZcjHtXpi/dz3p20eg/KvzKrjcRWpRoVJ3jHZH18cPShN1Ix1Z/P18TrM6b8SvF1keDb6xexn/gNw4Nfbv8AwST+XXviJ/172n/oTivj/wDaNsTY/tA/Eu3QbdniS/A+jXL17l+xd8abT4A/D34veLp1jmvI7a2ttOt2bCz3TF/LXHUqG5J9K/UczjPEZXyw1clC3zsfF4OUaWMvLRK56B/wUw/aGOu65afCrRbtGsbApPrZib5WuMBkh9wqlWI9WQetfP37IX7Odx+0N8WrTTbuOSPwvpbLeazcIDhowcpbK39+QgrnsgZuoFeQv/bPjbxK7OtxrfiHV70/dG6e9upH6gf3nkdjjoC2Ogr9p/2VPgDZ/s7/AArstBKRSa1cYutXvI/+WtwwAwPUKAAPQCvNxlaOQ5fHDUX+8l/TfyO6jCWY4l1pfCj5q/4Kqx3+m/D34d2dlGbfw7FfyrLDAmIllEarb5A4UYaTHocYr82HU7ZI+2MY9vSv32+JXwz8O/GDwff+FvFOnLqOi3gVZEY4bKnKujqdyOCMhhgjFfmT+0l/wTv8S/B/Q9Q8TeE9Qk8W+H7NDPcW8sQjv4Ix959i8SKP9n5v9iubh7NsPRorCVnyyvo+9y80wVWpP29LVfkfUn7IP7Tvwv8AiR4D0fwSqWXhTxPBYLay6PNGiLPgbQ0LYCuCecDua0fhn/wTs+Hvwt+JWk+NdM8Q+K7y90y5N1b2t5dWjW5dgQBhbVGx83GHr8jVuGVopQ22SJg8bR8bCDkEehzX6lf8E2/2gPEXxU8K+IfCnim8l1W+8NNby2mpTkmSa3m8xPLkJOWaN4WwT1DqOq5rLN8srZfCpicJVahL4l6/mjbA4yGKkqVWC5lsz7cCjHSlpaK+BPpSKWESDBAI9DXyb+0L+xdb+N7qXxJ4GeLRvEDfNcWZwltdH+/x9yT/AGh8vtX1vVG6u4rOF5Z5FiijUs7ucKqjuTXJiMNSxUOSqrr+up7WU5zjsjxKxWAqcstu6a7NdV5Hxv4F/Y78Z60I1+IfjnU4NHjG46Pp18zmRfRpSdqr9BmuQ+Lfx20H4Q6s3g/4P6Lo+myac3k32tLaiWTzF+9HGSOW/vOxOO1emftHftfaHovhifRPA+rx6pr98hjN5asWSwjb70ue7D+HHTtXwgMcLyxUYOfT0r4nMMRQwf7jB6y6y3fpc/pDhPJcx4ik8x4hjakvgpcvLFvrKUFuu3NdvfZK/tfhn9sv4qeG74XE+tQa7bsfmtNUtw6t7h49hX6jj/Yr3/Sv28vCPiLRY49Wh17wfft964sbeO7H/ACUcH8Ur4TZ1jTexCqy7jnJA9uOSaf8iuuOZMbT7H3ry6Gb4yhdc3MvPU+4zPgHh7NGpSoKnJdYe7+G33pn1xrH7R/wj0vVx4mt9L1/4h+KI1/cXevKY1hOCPk3KI4uD1SMV4D8Wvjd4q+NWpRza/dxw2MbF7XTbNj9nhz2x/E3+0RmuHKkHIBJ9eKapDZ2j73X3rHEZliMSuRu0eyVr+vc9DKeD8ryiqsRBOpUirKU3zOK7R2UV6JPzGTvtilZVDjrt719o+Cv2D/CPibwLp2qyeLdauL+8t1mSaze3FsrbflVVMZY47gvXxhjnI6jqfWvTPg/+0Z4x+DMiwafOL/QGctPo12xaHnr5b9UP0+T2q8vrYWnNrFw5ovT0MeMMBnWMwkHkWI9nUi22tPeXa72+ejvZtHuvwV/Zu+L/wAH/if9s06605PDz3Xl3s8sxCXVoG+ZvJHO8joetfc9eTfBv48eFvjNpJk0i7+z6lCgM+l3RAuIcdCQeo/2hxXqytmv0jA0aFGlbDu8Xrvc/j7iXMcyzDHN5tSUK0Uk7R5W/N9/6tpYfRRRXoHygUUUUAFFFFADGfYuTXxf+05+394U8Bjxz8P9Os9Sk8W29tLYw3ixobaK4kiypLb+dpYE/SvtFl3DFfGfij/gmT4J8W+JtX13UPFniSa/1K7kupm3x8NIwJA+ToF4x6cV62W/UlUbxt7La3c4sV7dwtQtd9z8olUQrGkYAx0Y9v8AOK/Q3/gn3+014O8E+FfDXwqt9I1a78V6tqc81zdQRIYC8jNtYtvzhYliB9wa7s/8Eofh0evinxIf+BRf/EV6F8Cf2B/BfwH+IVv4v03V9W1a/t4pYoY9QKFEMn3mAUDnk819fmecZdjsNKk2291utel/I8PB4DFYeqp6We/ofT6/dFOoor86PqT8OP2x9PTTf2q/ifbYKqNWE7f9tYY5gR/33n8a8d859pxJjOMruJBwMD9Ca/XP4vf8E8fBfxm+J3iHxvqXiLWLO81mSKSW2tfKESeXbxwLt4yOIQfxNcl/w6g+HYXaPFniVD/eRogf/QK/T8LxDgqeHpwqN8yST07Hx9fKq860pw2bPNv+CZ/7NS6rfN8WfEFpmG1YwaBHKMjfgrJOAfYlFI9Sa++fid4xg+G/w78T+Kbwg2uiabPqLgdX8qNnKj3OAB7mtPwl4T0rwP4d07QdFtI7HStPt0tre1iHyxxoNo49T+tZXxU+GumfFvwFq/hHWZ7qDStUjWO4NjKI5cBw5AYjuVwfbNfB43GvMMX7erpG+3ZH0dDD/V6Ps4b/AKn4naL8fPH1p4k0vVtZ8beJtQWG8jurm1/te4KXCq+6Rdu/ABHAFfX/AMTP+CpVrr/g/UtN8JeCr3TtSvIZIEutYlie3jEgOXARsswz908V2urf8EnfBs1y0uneN9esUbH7qW3imIx05AFQaX/wSb8JxXKy6h451u6VfvLDbRQk/wDAiDX2VfHZHinGdRO8dla339zxKeHzGipRjbU/M63smLwW8CNO8rbY44wzmT6Ac1+tv/BPX9nLUfgb8PdS1nxDCbPxT4oaGae2Y5a3tYQwgjI6Bv3smf8AeHpXpPwd/Y3+FvwRuE1DQvDyXeuryNa1ZvtV3Gf9hmBEf/AAK9uW3RXOFUZO44HU+teTnGe/X6f1ejG0dLt9fl0OvAZb9Wl7So7yHs+xcmq8l0qYDPt3cKW+Xn0wTzU8ke+PHevIPF37NnhvxtrCape614qt7uOTzUSDXrhkjb/ZjdnVR7AV8XUc0rwV362PqMNDD1J2xNRwj3UebX70el6pr1noOnyXuo3sNnaxLmSa5lVET6sT/Kvir9oD9pLV/jRet4A+FdjqGqWkx8q+vLOMkz/7AbpHH/00faK92uP2Q/BOu3C3PiO+8R+LmVsqmu63NNGvsFVlGK9R8LfD3w74JsVsvD+i2GjWinJjsbdItzepIA5rz8RRxWKXs2+SPW2r/wAj6vLMdk+SVFjIQlia0dYqS5aafRv3pOVu2iufJPw4/wCCf1teeGFl8Z6tdW2pyESpbaUyotoR0DFgd2K6q3/4J4+DIuX8Q+IHJ/6aRD/2SvrBVAHSlqY5TgYpL2aZ0VuPOJK1SVT63Jc3RWsvRWPDfAv7IPww8B3a3tnoR1O+U7ludWnN0Y29VQ/ID9BWZ4+/Yr+HPjW4lvbWxm8M30i4MmkkRwk+rQ/c/wC+QK+hSoPUZo2jpgYrp+o4Vw9m6at6HiQ4kzmniPrUcXU9p35n9zV7NeWx8XSf8E47Hzsx+Npli37udPXOPT79dJpf/BP3wPb28q3+savqFwyfK0ci26xtj7+1OSPbOK+rcD0oCgdABXNHKcFF3VNHs1uO+JK8eWWMkvSy/FJM+XPBf7BPw/0ezX+35dR8T3jD94zXUtrF+CxMG/8AHq6W9/Yn+Ed3F+58OT2chHE1vql4H/ENKRXv20dcD8qTavPyj8q2WXYRLl9kreh5tXivP61R1ZY6qn5Tkl9yaX4Hxn4q/YVuPDeoJrnwy8WXuk6vatvgjvZBuDDoqSjgE+jKRXoHwU/aH1LUNcPgP4k2beH/AB7a5+aT5INQTBIkiP3eQOg7g+j7fol7dW6Hb24rzP4qfAPwj8Xp9PufEdpcTXunq62l1bXMkEkO45DLtbBIOCCemKy+o/V3z4TR9Y9H/k/M7pcRf2tT+r5+3USXu1El7SD6a6c8e6k79U119MW4Vm2jrUtYXhvRJdC0Wzs5NRutUlgj2m9vmVppB6sVABPvit2vVV7anxMkk2k7oKKKKZIUUUUAFJtGMYGMY6UtFACUbQeMUtFABRRRQAm0elGB6UtFACbQeCMjOaAoXoAKWigBNoPYUBQOAMClooATA9KWiigApNo9KWigBNo9KNoPUUtFABRRRQAUUUUAFFFFABRRRQAU3YpGCoI+lOooATaPQflS0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//Z" alt="TVS"/></div>
+    <div class="header-divider"></div>
+    <div class="header-title">
+      <h1>NSE1 Important Dates</h1>
+      <p>Africa Region · 2026 Event Calendar</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="updated">Last updated: <strong>11 Sep 2026, 12:40</strong></div>
+    <div class="header-btns">
+      <!-- Month filter -->
+      <div class="dropdown-wrap">
+        <button class="dropdown-btn" id="monthBtn">
+          <span id="monthLabel">All Months</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu" id="monthMenu"></div>
+      </div>
+      <!-- Country filter -->
+      <div class="dropdown-wrap">
+        <button class="dropdown-btn" id="countryBtn">
+          <span id="countryLabel">All Countries</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu" id="countryMenu"></div>
+      </div>
+      <!-- Requires PR filter -->
+      <div class="dropdown-wrap" id="requiresPRWrap">
+        <button class="dropdown-btn blue-btn" id="requiresPRBtn">
+          <span id="requiresPRLabel">Requires PR</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu" id="requiresPRMenu">
+          <div class="dropdown-item" data-value="all" onclick="setRequiresPR('all')">All Events</div>
+          <div class="dropdown-item" data-value="Yes" onclick="setRequiresPR('Yes')">📣 Requires PR — Yes</div>
+          <div class="dropdown-item" data-value="No" onclick="setRequiresPR('No')">No PR Required</div>
+        </div>
+      </div>
+      <!-- Time period dropdown -->
+      <div class="dropdown-wrap">
+        <button class="dropdown-btn" id="timePeriodBtn">
+          <span id="timePeriodLabel">Time Period</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu" id="timePeriodMenu">
+          <div class="dropdown-item" data-value="all" onclick="setTimePeriod('all')">All Dates</div>
+          <div class="dropdown-item" data-value="45" onclick="setTimePeriod('45')">📅 Next 45 Days</div>
+          <div class="dropdown-item" data-value="60" onclick="setTimePeriod('60')">📅 Next 60 Days</div>
+          <div class="dropdown-item" data-value="90" onclick="setTimePeriod('90')">📅 Next 90 Days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="view-tabs">
+  <button class="view-tab active" id="tabMain" onclick="switchView('main')">
+    📋 All Important Dates <span class="tab-count" id="tabMainCount"></span>
+  </button>
+  <button class="view-tab" id="tabBigTicket" onclick="switchView('bigticket')">
+    🎯 Big Ticket Activities <span class="tab-count" id="tabBigTicketCount"></span>
+  </button>
+</div>
+
+<div class="filter-bar" id="filterBar">
+  <span class="filter-label">Filters:</span>
+  <span class="no-filters" id="noFilters">None — showing all events</span>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+<main id="main"></main>
+
+<div class="legend">
+  <span>Legend:</span>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--executed)"></div> Executed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--postponed)"></div> Postponed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--yet)"></div> Upcoming</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--tvs-blue)"></div> 📋 Has report</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--postponed)"></div> ⚠️ Report pending</div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-country" id="modalCountry"></div>
+        <div class="modal-event"   id="modalEvent"></div>
+        <div class="modal-meta">
+          <span class="modal-date"  id="modalDate"></span>
+          <span class="status-badge" id="modalBadge"></span>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Event Report</div>
+      <div class="modal-description" id="modalDesc"></div>
+      <div class="modal-cat-row">
+        <span class="modal-cat-label">Category:</span>
+        <span class="cat-chip" id="modalCat"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MAIN_DATA = {"months": ["February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "Unscheduled / TBC"], "data": {"February 2026": {"Madagascar": [{"DateStr": "20 Feb 2026", "Event": "3W Launch (Virtual) – Antananarivo", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-02-20"}], "South Africa": [{"DateStr": "26 Feb 2026", "Event": "TVS South Africa Country Launch", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-02-26"}, {"DateStr": "27 Feb 2026", "Event": "Store Inauguration & Media Ride", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-02-27"}]}, "March 2026": {"South Africa": [{"DateStr": "02 Mar 2026", "Event": "Cape Town Store Launch", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-03-02"}], "Madagascar": [{"DateStr": "20 Mar 2026", "Event": "Regional 3W launch at Fort Dhauphin followed by service camp", "Status": "Executed", "Description": "The TVS King Deluxe Plus was introduced in Fort Dauphin, Madagascar, by late March 2026, highlighted as a strong and durable three-wheeler for the city's hilly terrain. This launch expands the presence of TVS Motor Company in Madagascar, featuring a reliable 3W designed for both passenger and commercial use throughout the island.", "DatePassed": true, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-03-20"}]}, "April 2026": {"Madagascar": [{"DateStr": "20 Apr 2026", "Event": "HLX Day-Antanarivo", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-04-20"}], "South Africa": [{"DateStr": "24 Apr 2026", "Event": "Collaboration with Soweto Motorbikes School", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Partnership", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-04-24"}, {"DateStr": "25 Apr 2026", "Event": "TVS Centurion 3S inaugartion", "Status": "Executed", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-04-25"}]}, "May 2026": {"South Africa": [{"DateStr": "09 May 2026", "Event": "HLX Day-Cape Town", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "South Africa", "NoDay": false, "SortDate": "2026-05-09"}], "Madagascar": [{"DateStr": "15 May 2026", "Event": "Regional 3W launch at Diego and store inaugartion; Service Camp in Ambolobe", "Status": "Executed", "Description": "Successful", "DatePassed": true, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-05-15"}]}, "June 2026": {"South Africa": [{"DateStr": "16 Jun 2026", "Event": "Youth Day Activation: Donate school shoes", "Status": "Executed", "Description": "", "DatePassed": true, "CategoryOfEvent": "CSR", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-06-16"}, {"DateStr": "27 Jun 2026", "Event": "Store Inaugration  Centurion, Pretoria,", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-06-27"}, {"DateStr": "30 Jun 2026", "Event": "George Dealer Activation Program", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-06-30"}], "Madagascar": [{"DateStr": "22 Jun 2026", "Event": "Independence Ride with 50 riders", "Status": "Executed", "Description": "", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-06-22"}]}, "July 2026": {"South Africa": [{"DateStr": "07 Jul 2026", "Event": "EKROLD - Durban Dealer opening & Activation", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-07-07"}, {"DateStr": "18 Jul 2026", "Event": "Madela Day Activation: Charity ride to Tshepang Care Centre", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "CSR", "RequiresPR": "No", "Country": "South Africa", "NoDay": false, "SortDate": "2026-07-18"}], "Madagascar": [{"DateStr": "19 Jul 2026", "Event": "TVS Fanpark at Antanarivo FIFA Final Match-Antananarivo", "Status": "Yet to Happen", "Description": "150+ crowed attended", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-07-19"}, {"DateStr": "25 Jul 2026", "Event": "TVS stall at Moto Exhibition in Antananarivo", "Status": "Yet to Happen", "Description": "3 days event; generated 40+ enquiries; 7 units spot sale", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-07-25"}, {"DateStr": "29 Jul 2026", "Event": "Exhibition at Farmers fair", "Status": "Yet to Happen", "Description": "generated 70+ enquiries", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-07-29"}, {"DateStr": "30 Jul 2026", "Event": "Health check up and service camp- Fort Dhauphin", "Status": "Yet to Happen", "Description": "60+ vehicles attended", "DatePassed": true, "CategoryOfEvent": "Service Activity", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-07-30"}]}, "August 2026": {"South Africa": [{"DateStr": "08 Aug 2026", "Event": "Dealer Activation: TVS Centurion", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "South Africa", "NoDay": false, "SortDate": "2026-08-08"}, {"DateStr": "15 Aug 2026", "Event": "Bikers WareHouse Store Inauguration", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-08-15"}, {"DateStr": "19 Aug 2026", "Event": "Women's Month Sanitary Pads Donation Drive", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "CSR", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-08-19"}, {"DateStr": "20 Aug 2026", "Event": "Dealer Visit to India", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-08-20"}, {"DateStr": "29 Aug 2026", "Event": "Dealer Activation - Linex: Pretoria Airshow", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-08-29"}], "Madagascar": [{"DateStr": "15 Aug 2026", "Event": "Velontenga Vantanga Credit Fair -an initiate by TVS to promote economic self reliance", "Status": "Yet to Happen", "Description": "3W credir Fair", "DatePassed": true, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-08-15"}]}, "September 2026": {"Kenya": [{"DateStr": "04 Sep 2026", "Event": "Meru Store Opening", "Status": "Postponed", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-04"}, {"DateStr": "14 Sep 2026", "Event": "Africa on Apache", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-14"}, {"DateStr": "21 Sep 2026", "Event": "Apache RTR 180 Mall Activation", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-21"}, {"DateStr": "27 Sep 2026", "Event": "Concours de Elegance", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-27"}], "South Africa": [{"DateStr": "04 Sep 2026", "Event": "Dealer Activation: Linex: 24HR MTB Race Activation", "Status": "Yet to Happen", "Description": "", "DatePassed": true, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-09-04"}, {"DateStr": "18 Sep 2026", "Event": "Dealer Activation - TWK Activation", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-09-18"}, {"DateStr": "19 Sep 2026", "Event": "Dealer Activation - Linex: Scooter Run", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-09-19"}, {"DateStr": "26 Sep 2026", "Event": "Dealer Activation - Tex Motorcycles:  Outeniqua Family Market", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-09-26"}], "Tanzania": [{"DateStr": "12 Sep 2026", "Event": "Customer Experience Project - 125 5G, Morogoro", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-09-12"}, {"DateStr": "12 Sep 2026", "Event": "HLX Day", "Status": "Executed", "Description": "Customer appreciation. Fun family day with HLX riders", "DatePassed": false, "CategoryOfEvent": "Customer Engagement", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-09-12"}, {"DateStr": "21 Sep 2026", "Event": "Africa on Apache Campaign", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-09-21"}, {"DateStr": "Sep 2026", "Event": "3W GS+ Seeding Units", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Customer Experience Project - 125 5G, Arusha", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Customer Experience Project - 125 5G, Dodoma", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Customer Experience Project - 125 5G, Iringa", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Customer Experience Project - 125 5G, Musoma", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Demovan Lake Zone", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "ITrust HLX Rally", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Load Test Campaign", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Mega Mileage Test Ride", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Mega Service Camp (Dar - 3 Nos), Lake - 2 Nos", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Mini FSC (6 Nos)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Minor Mileage Test Ride", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Own Demovan Coastal", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Own Demovan Pwani", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Radio Campaign (Arusha, Mbeya, Dodoma, Mwanza, Dar, Morogoro, Iringa, Kahama, Moshi, Tanga, Singida,)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}, {"DateStr": "Sep 2026", "Event": "Trial Bike HLX 125 5G, Kahama", "Status": "Executed", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-09-01"}], "Ghana": [{"DateStr": "15 Sep 2026", "Event": "HLX DAY", "Status": "Yet to Happen", "Description": "HLX DAY", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Ghana", "NoDay": false, "SortDate": "2026-09-15"}], "Nigeria": [{"DateStr": "15 Sep 2026", "Event": "HLX Day", "Status": "Yet to Happen", "Description": "HLX Day Community Day", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Nigeria", "NoDay": false, "SortDate": "2026-09-15"}], "Madagascar": [{"DateStr": "28 Sep 2026", "Event": "3S Inaugartion at Diego", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-09-28"}, {"DateStr": "30 Sep 2026", "Event": "3S Inaugartion at Fort Dhauphin & Assembly area opening", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-09-30"}]}, "October 2026": {"Tanzania": [{"DateStr": "03 Oct 2026", "Event": "HLX Day Dar", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-03"}, {"DateStr": "10 Oct 2026", "Event": "HLX Day Mwanza", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-10"}, {"DateStr": "16 Oct 2026", "Event": "Tanzania Bikers Festival", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-16"}, {"DateStr": "23 Oct 2026", "Event": "Boda Festival - Arusha", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-23"}, {"DateStr": "28 Oct 2026", "Event": "3W Queen Ride Project", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "CSR", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-28"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - 125 5G, Arusha", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - 125 5G, Dodoma", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - 125 5G, Iringa", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - 125 5G, Morogoro", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - 125 5G, Musoma", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Customer Experience Project - Plus, Tanga", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Demovan South Zone", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "ITrust HLX Rally", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Load Test Campaign", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Mega Mileage Test Ride", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Mega Service Camp (Dar - 3 Nos), South - 2 Nos, North -1", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Mini FSC (8 Nos)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Minor Mileage Test Ride", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Own Demovan Central", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Own Demovan Dar", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Radio Campaign (Arusha, Mbeya, Dodoma, Mwanza, Dar, Morogoro, Iringa, Kahama, Moshi, Tanga, Singida,)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}, {"DateStr": "Oct 2026", "Event": "Trial Bike HLX 125 5G, Kahama", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-10-01"}], "Senegal": [{"DateStr": "15 Oct 2026", "Event": "AOG Ride", "Status": "Yet to Happen", "Description": "First AOG Ride", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Senegal", "NoDay": false, "SortDate": "2026-10-15"}, {"DateStr": "25 Oct 2026", "Event": "HLX Day", "Status": "Yet to Happen", "Description": "HLX Family Day Community Building", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Senegal", "NoDay": false, "SortDate": "2026-10-25"}], "South Africa": [{"DateStr": "17 Oct 2026", "Event": "Dealer Activation - Linex Demo Day", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-10-17"}, {"DateStr": "25 Oct 2026", "Event": "Bikers Lives Matter", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "South Africa", "NoDay": false, "SortDate": "2026-10-25"}], "Ghana": [{"DateStr": "20 Oct 2026", "Event": "HLX & NEO BTL Campaign (Roadshow & Test Ride)", "Status": "Yet to Happen", "Description": "BTL Campaign", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Ghana", "NoDay": false, "SortDate": "2026-10-20"}], "Nigeria": [{"DateStr": "20 Oct 2026", "Event": "Neo Day", "Status": "Yet to Happen", "Description": "Neo Day Community Building", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Nigeria", "NoDay": false, "SortDate": "2026-10-20"}], "Liberia": [{"DateStr": "22 Oct 2026", "Event": "Apache 180 Refresh Soft Launch", "Status": "Yet to Happen", "Description": "Launch of Apache in the market", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Liberia", "NoDay": false, "SortDate": "2026-10-22"}], "Madagascar": [{"DateStr": "22 Oct 2026", "Event": "Jupiter Launch Event", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-10-22"}, {"DateStr": "22 Oct 2026", "Event": "Ronin Launch with media from the store", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-10-22"}], "Guinea": [{"DateStr": "25 Oct 2026", "Event": "Apache rtr 180 Launch", "Status": "Yet to Happen", "Description": "Launch of Apache in the market", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Guinea", "NoDay": false, "SortDate": "2026-10-25"}]}, "November 2026": {"South Africa": [{"DateStr": "01 Nov 2026", "Event": "Dealer Activation - Bay City Auto Killarney Motor Show", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-01"}, {"DateStr": "06 Nov 2026", "Event": "Dealer Activation - Tex Motorcycles: Kwagga Golf Day", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-06"}, {"DateStr": "20–21 Nov 2026", "Event": "Apache Track day and RTR310 Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-20"}, {"DateStr": "27 Nov 2026", "Event": "Raider I-Go, NTORQ 150 Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-27"}], "Sierra Leone": [{"DateStr": "10 Nov 2026", "Event": "IQube Launch", "Status": "Yet to Happen", "Description": "Launch of IQUBE 1st EV in West Africa", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Sierra Leone", "NoDay": false, "SortDate": "2026-11-10"}], "Tanzania": [{"DateStr": "Nov 2026", "Event": "HLX Day (1 Dar, 1 Mbeya)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-11-01"}, {"DateStr": "Nov 2026", "Event": "Mega Service Camp 5 Nos", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-11-01"}, {"DateStr": "Nov 2026", "Event": "Mini FSC (8 Nos)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Marketing Activity", "RequiresPR": "No", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-11-01"}, {"DateStr": "Nov 2026", "Event": "New Coco 2S inauguration - Matwara", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-11-01"}, {"DateStr": "Nov 2026", "Event": "New Coco 2S inauguration - Tanga", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": true, "SortDate": "2026-11-01"}]}, "Unscheduled / TBC": {"South Africa": [{"DateStr": "TBC", "Event": "KZN Mass Recruitment", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "South Africa", "NoDay": true, "SortDate": null}, {"DateStr": "TBC", "Event": "Pretoria mass recruitment", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "No", "Country": "South Africa", "NoDay": true, "SortDate": null}]}}};
+const BIGTICKET_DATA = {"months": ["September 2026", "October 2026", "November 2026", "December 2026"], "data": {"November 2026": {"Ghana": [{"DateStr": "25 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ghana", "NoDay": false, "SortDate": "2026-11-25"}, {"DateStr": "25 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ghana", "NoDay": false, "SortDate": "2026-11-25"}], "Sierra Leone": [{"DateStr": "10 Nov 2026", "Event": "iQube Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Sierra Leone", "NoDay": false, "SortDate": "2026-11-10"}], "Guinea": [{"DateStr": "20 Nov 2026", "Event": "Apache 180 Refresh Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Guinea", "NoDay": false, "SortDate": "2026-11-20"}], "Nigeria": [{"DateStr": "15 Nov 2026", "Event": "EV (IQUBE, ORBITER & KING EV Maxx launch)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Nigeria", "NoDay": false, "SortDate": "2026-11-15"}], "Kenya": [{"DateStr": "08 Nov 2026", "Event": "HLX 100 CC AGD - Nyanza", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-08"}, {"DateStr": "14 Nov 2026", "Event": "HLX 100 CC AGD - Coast", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-14"}, {"DateStr": "16 Nov 2026", "Event": "HLX 100 CC AGD - Rift / Western", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-16"}], "Egypt": [{"DateStr": "10 Nov 2026", "Event": "ARE", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Egypt", "NoDay": false, "SortDate": "2026-11-10"}], "Tunisia": [{"DateStr": "25 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Tunisia", "NoDay": false, "SortDate": "2026-11-25"}], "Ethiopia": [{"DateStr": "18 Nov 2026", "Event": "EV Portfolio Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ethiopia", "NoDay": false, "SortDate": "2026-11-18"}], "Malawi": [{"DateStr": "12 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Malawi", "NoDay": false, "SortDate": "2026-11-12"}], "Zambia": [{"DateStr": "21 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Zambia", "NoDay": false, "SortDate": "2026-11-21"}], "DRC": [{"DateStr": "24 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "DRC", "NoDay": false, "SortDate": "2026-11-24"}], "Mauritius": [{"DateStr": "03 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Mauritius", "NoDay": false, "SortDate": "2026-11-03"}], "South Africa": [{"DateStr": "16 Nov 2026", "Event": "RTR 310 Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-16"}]}, "October 2026": {"Ivory Coast": [{"DateStr": "20 Oct 2026", "Event": "Apache 180 Refresh Launch, Neo Dual tone Launch & Korhogo Branch Inauguration", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ivory Coast", "NoDay": false, "SortDate": "2026-10-20"}], "Cameroon": [{"DateStr": "25 Oct 2026", "Event": "2nd Distributor Appointment, Showroom Launch & PR Amplification", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Cameroon", "NoDay": false, "SortDate": "2026-10-25"}], "Egypt": [{"DateStr": "10 Oct 2026", "Event": "AOG Kickoff", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Egypt", "NoDay": false, "SortDate": "2026-10-10"}], "Angola": [{"DateStr": "27 Oct 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Angola", "NoDay": false, "SortDate": "2026-10-27"}], "Madagascar": [{"DateStr": "22 Oct 2026", "Event": "Jupiter & Ronin Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-10-22"}], "Tanzania": [{"DateStr": "28 Oct 2026", "Event": "3W Queen Ride Project", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "CSR", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-28"}], "Kenya": [{"DateStr": "26 Oct 2026", "Event": "Antenna Dealer meet", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-10-26"}, {"DateStr": "28 Oct 2026", "Event": "Nyeri Polytechnic College  - PTC Center", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-10-28"}]}, "December 2026": {"Mauritania": [{"DateStr": "06 Dec 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Mauritania", "NoDay": false, "SortDate": "2026-12-06"}]}, "September 2026": {"Kenya": [{"DateStr": "29 Sep 2026", "Event": "SOW vehicle Launch -10 Units", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-29"}]}}};
+const FLAGS = {
+  DRC:'🇨🇩', Egypt:'🇪🇬', Kenya:'🇰🇪', Madagascar:'🇲🇬', Morocco:'🇲🇦',
+  Mozambique:'🇲🇿', Regional:'🌍', 'South Africa':'🇿🇦', Tanzania:'🇹🇿',
+  Tunisia:'🇹🇳', Uganda:'🇺🇬', Zambia:'🇿🇲', Mauritius:'🇲🇺',
+  Ghana:'🇬🇭', 'Sierra Leone':'🇸🇱', Guinea:'🇬🇳', 'Ivory Coast':'🇨🇮',
+  Nigeria:'🇳🇬', Cameroon:'🇨🇲', Mauritania:'🇲🇷', Angola:'🇦🇴',
+  Ethiopia:'🇪🇹', Malawi:'🇲🇼'
+};
+
+// ── Dataset switching (All Important Dates ⇄ Big Ticket Activities) ────────────
+let currentView = 'main';    // 'main' | 'bigticket'
+let RAW = MAIN_DATA;         // active dataset — swapped by switchView()
+function getAllCountries() {
+  return [...new Set(RAW.months.flatMap(m=>Object.keys(RAW.data[m])))].sort();
+}
+function totalEvents(dataset) {
+  return dataset.months.reduce((s,m)=>s+Object.values(dataset.data[m]).reduce((s2,e)=>s2+e.length,0),0);
+}
+function switchView(view) {
+  if (view === currentView) return;
+  currentView = view;
+  RAW = view === 'bigticket' ? BIGTICKET_DATA : MAIN_DATA;
+  selectedMonths.clear(); selectedCountries.clear();
+  requiresPRFilter = 'all'; timePeriodDays = 'all';
+  document.getElementById('tabMain').classList.toggle('active', view==='main');
+  document.getElementById('tabBigTicket').classList.toggle('active', view==='bigticket');
+  document.getElementById('requiresPRWrap').style.display = view==='bigticket' ? 'none' : '';
+  buildMonthDropdown();
+  buildCountryDropdown();
+  applyFilters();
+}
+
+// State
+let selectedMonths    = new Set();
+let selectedCountries = new Set();
+let requiresPRFilter  = 'all';  // 'all' | 'Yes' | 'No'
+let timePeriodDays    = 'all';  // 'all' | '45' | '60' | '90'
+
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+
+function getEndDate() {
+  if (timePeriodDays === 'all') return null;
+  const d = new Date(TODAY);
+  d.setDate(d.getDate() + parseInt(timePeriodDays));
+  return d;
+}
+function parseDate(e) {
+  if (!e || !e.SortDate) return null; // TBC / unparseable events have no SortDate
+  const d = new Date(e.SortDate + 'T00:00:00');
+  return isNaN(d) ? null : d;
+}
+function countEventsInMonth(m) { return Object.values(RAW.data[m]).reduce((s,e)=>s+e.length,0); }
+function countEventsForCountry(c) { return RAW.months.reduce((s,m)=>s+(RAW.data[m][c]?.length||0),0); }
+
+function badgeClass(s, datePassed) {
+  if(!s) return 'badge-unknown';
+  const l=s.toLowerCase();
+  if(l.includes('executed'))  return 'badge-executed';
+  if(l.includes('postponed')) return 'badge-postponed';
+  if(l.includes('yet'))       return datePassed ? 'badge-update-req' : 'badge-yet';
+  return 'badge-unknown';
+}
+function badgeLabel(s, datePassed) {
+  if(!s) return '—';
+  if(s.toLowerCase().includes('executed'))  return 'Executed';
+  if(s.toLowerCase().includes('postponed')) return 'Postponed';
+  if(s.toLowerCase().includes('yet'))       return datePassed ? 'Update Required' : 'Upcoming';
+  return s;
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+function openModal(country, event) {
+  document.getElementById('modalCountry').textContent = country;
+  document.getElementById('modalEvent').textContent   = event.Event;
+  document.getElementById('modalDate').textContent    = event.DateStr;
+  const badge = document.getElementById('modalBadge');
+  badge.textContent = badgeLabel(event.Status, event.DatePassed);
+  badge.className   = 'status-badge ' + badgeClass(event.Status, event.DatePassed);
+  document.getElementById('modalDesc').textContent = event.Description || 'No report added yet.';
+  document.getElementById('modalCat').textContent  = event.CategoryOfEvent || '—';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModal(e) { if(e.target === document.getElementById('modalOverlay')) closeModalDirect(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalDirect(); });
+
+// ── Requires PR dropdown ───────────────────────────────────────────────────────
+function setRequiresPR(val) {
+  requiresPRFilter = val;
+  document.querySelectorAll('#requiresPRMenu .dropdown-item').forEach(i => {
+    i.classList.toggle('selected', i.dataset.value === val);
+  });
+  closeAll();
+  applyFilters();
+}
+
+// ── Time period dropdown ──────────────────────────────────────────────────────
+function setTimePeriod(val) {
+  timePeriodDays = val;
+  if (val !== 'all') selectedMonths.clear();
+  document.querySelectorAll('#timePeriodMenu .dropdown-item').forEach(i => {
+    i.classList.toggle('selected', i.dataset.value === val);
+  });
+  closeAll();
+  applyFilters();
+}
+
+// ── Filter bar ────────────────────────────────────────────────────────────────
+function renderFilterBar() {
+  const bar = document.getElementById('filterBar');
+  bar.querySelectorAll('.filter-tag').forEach(t=>t.remove());
+  const noF = document.getElementById('noFilters');
+  const hasFilters = selectedMonths.size || selectedCountries.size || timePeriodDays !== 'all' || requiresPRFilter !== 'all';
+  if (!hasFilters) { noF.style.display='inline'; return; }
+  noF.style.display='none';
+  if (timePeriodDays !== 'all') {
+    const t=document.createElement('div'); t.className='filter-tag';
+    t.innerHTML=`📅 Next ${timePeriodDays} Days <button onclick="setTimePeriod('all')">✕</button>`;
+    bar.appendChild(t);
+  }
+  if (requiresPRFilter !== 'all') {
+    const t=document.createElement('div'); t.className='filter-tag green';
+    const label = requiresPRFilter === 'Yes' ? '📣 Requires PR: Yes' : 'No PR Required';
+    t.innerHTML=`${label} <button onclick="setRequiresPR('all')">✕</button>`;
+    bar.appendChild(t);
+  }
+  selectedMonths.forEach(m=>{
+    const t=document.createElement('div'); t.className='filter-tag';
+    t.innerHTML=`📅 ${m} <button onclick="removeMonth('${m}')">✕</button>`;
+    bar.appendChild(t);
+  });
+  selectedCountries.forEach(c=>{
+    const t=document.createElement('div'); t.className='filter-tag blue';
+    t.innerHTML=`${FLAGS[c]||'🌐'} ${c} <button onclick="removeCountry('${c.replace(/'/g,"\'")}')">✕</button>`;
+    bar.appendChild(t);
+  });
+}
+
+function removeMonth(m)   { selectedMonths.delete(m);   applyFilters(); }
+function removeCountry(c) { selectedCountries.delete(c); applyFilters(); }
+
+// ── Get filtered events ───────────────────────────────────────────────────────
+function getFilteredEntries() {
+  const endDate = getEndDate();
+  const result = [];
+  const months = selectedMonths.size ? RAW.months.filter(m=>selectedMonths.has(m)) : RAW.months;
+  months.forEach(m => {
+    let entries = Object.entries(RAW.data[m]);
+    if (selectedCountries.size) entries = entries.filter(([c])=>selectedCountries.has(c));
+    entries.forEach(([country, events]) => {
+      let evts = events;
+      if (endDate) {
+        evts = events.filter(e => {
+          const d = parseDate(e);
+          return d && d >= TODAY && d <= endDate;
+        });
+      }
+      if (requiresPRFilter !== 'all') {
+        evts = evts.filter(e => (e.RequiresPR || 'No') === requiresPRFilter);
+      }
+      if (evts.length) result.push({ month:m, country, events:evts });
+    });
+  });
+  return result;
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+function renderStats() {
+  const filtered = getFilteredEntries();
+  const c = {executed:0,postponed:0,yet:0,updateReq:0,unknown:0};
+  filtered.forEach(item => item.events.forEach(e=>{
+    const s=(e.Status||'').toLowerCase();
+    if(s.includes('executed'))c.executed++;
+    else if(s.includes('postponed'))c.postponed++;
+    else if(s.includes('yet') && e.DatePassed)c.updateReq++;
+    else if(s.includes('yet'))c.yet++;
+    else c.unknown++;
+  }));
+  const total=c.executed+c.postponed+c.yet+c.updateReq+c.unknown;
+  document.getElementById('statsBar').innerHTML=`
+    <div class="stat-pill total"><div class="dot"></div>${total} Total Events</div>
+    <div class="stat-pill executed"><div class="dot"></div>${c.executed} Executed</div>
+    <div class="stat-pill postponed"><div class="dot"></div>${c.postponed} Postponed</div>
+    <div class="stat-pill yet"><div class="dot"></div>${c.yet} Upcoming</div>`
+    + (c.updateReq ? `<div class="stat-pill" style="background:#fff0e6;color:#7c2d12;border:1px solid #f97316"><div class="dot" style="background:#7c2d12"></div>${c.updateReq} Update Required</div>` : '');
+}
+
+// ── Export to CSV (opens in Excel) ────────────────────────────────────────────
+function exportPRToExcel() {
+  const filtered = getFilteredEntries();
+  const rows = [['Date of Event','Category of Event','Event Name','Country']];
+  filtered.forEach(item => item.events.forEach(e => {
+    if ((e.RequiresPR||'No') === 'Yes') {
+      rows.push([e.DateStr, e.CategoryOfEvent||'', e.Event, item.country]);
+    }
+  }));
+  if (rows.length === 1) { alert('No PR events to export.'); return; }
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'TVS_NSE1_Requires_PR.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+// ── Cards view ────────────────────────────────────────────────────────────────
+function renderCardsView(filtered) {
+  const byMonth = {};
+  filtered.forEach(item => {
+    if (!byMonth[item.month]) byMonth[item.month] = {};
+    byMonth[item.month][item.country] = item.events;
+  });
+  let html='';
+  RAW.months.filter(m=>byMonth[m]).forEach(m => {
+    const isTBC = m === 'Unscheduled / TBC';
+    const titleHtml = isTBC
+      ? `<div class="month-title">🕓 Unscheduled <span class="year">/ TBC</span></div>`
+      : (()=>{ const [mon,yr]=m.split(' '); return `<div class="month-title">${mon} <span class="year">${yr}</span></div>`; })();
+    html+=`<div class="month-section">
+      ${titleHtml}
+      <div class="country-grid">
+        ${Object.entries(byMonth[m]).map(([country,events])=>`
+          <div class="country-card">
+            <div class="country-header">
+              <div class="country-flag">${FLAGS[country]||'🌐'}</div>
+              <div class="country-name">${country}</div>
+              <div class="country-event-count">${events.length} event${events.length!==1?'s':''}</div>
+            </div>
+            <div class="event-list">
+              ${events.map((e)=>{
+                const origIdx = RAW.data[m][country].indexOf(e);
+                const hasDesc  = e.DatePassed && e.Description;
+                const warnDesc = e.DatePassed && !e.Description && e.Status.toLowerCase().includes('executed');
+                const rowClass = hasDesc?'event-row has-desc':warnDesc?'event-row warn-desc':'event-row';
+                const onclick  = hasDesc?`onclick="openModal('${country.replace(/'/g,"\'")}', RAW.data['${m}']['${country}'][${origIdx}])"` :'';
+                const indicator= hasDesc?`<div class="desc-indicator has">📋 Report</div>`:warnDesc?`<div class="desc-indicator warn">⚠️ Add report</div>`:'';
+                const catLabel = e.CategoryOfEvent ? `<div class="event-category">${e.CategoryOfEvent}</div>` : '';
+                const dateDisplay = e.NoDay && e.DateStr!=='TBC' ? '~'+e.DateStr : (e.DateStr||'—');
+                return `<div class="${rowClass}" ${onclick}>
+                  <div class="event-date" ${e.NoDay?'title="Approximate — exact day not specified"':''}>${dateDisplay}</div>
+                  <div class="event-info"><div class="event-name">${e.Event}</div>${catLabel}</div>
+                  <div class="event-right">
+                    <div class="status-badge ${badgeClass(e.Status, e.DatePassed)}">${badgeLabel(e.Status, e.DatePassed)}</div>
+                    ${indicator}
+                  </div>
+                </div>`;
+              }).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  return html;
+}
+
+// ── PR table view ─────────────────────────────────────────────────────────────
+function renderPRTableView(filtered) {
+  const prEvents = [];
+  filtered.forEach(item => item.events.forEach(e => {
+    prEvents.push({ ...e, _country: item.country });
+  }));
+  if (!prEvents.length) return '<div class="empty">No PR events match your filters.</div>';
+  const exportBar = `<div class="export-bar">
+    <div class="pr-section-title">📣 Requires PR — Events <span class="pr-badge-count">${prEvents.length}</span></div>
+    <button class="export-btn" onclick="exportPRToExcel()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export to Excel
+    </button>
+  </div>`;
+  const rows = prEvents.map(e => `
+    <tr>
+      <td class="date-col">${e.DateStr||'—'}</td>
+      <td class="cat-col"><span class="cat-chip">${e.CategoryOfEvent||'—'}</span></td>
+      <td>${e.Event}</td>
+      <td class="country-col">${FLAGS[e._country]||'🌐'} ${e._country}</td>
+    </tr>`).join('');
+  return `<div class="pr-section">
+    ${exportBar}
+    <div class="pr-table-wrap">
+      <table class="pr-table">
+        <thead><tr>
+          <th>Date of Event</th><th>Category of Event</th><th>Event Name</th><th>Country</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+// ── Main render ────────────────────────────────────────────────────────────────
+function renderMain() {
+  const filtered = getFilteredEntries();
+  const mainEl = document.getElementById('main');
+  if (!filtered.length) { mainEl.innerHTML='<div class="empty">No events match your filters.</div>'; return; }
+  mainEl.innerHTML = requiresPRFilter === 'Yes' ? renderPRTableView(filtered) : renderCardsView(filtered);
+}
+
+// ── Apply all filters ─────────────────────────────────────────────────────────
+function applyFilters() {
+  const mCount = selectedMonths.size;
+  document.getElementById('monthLabel').textContent = mCount===0?'All Months':mCount===1?[...selectedMonths][0]:`${mCount} Months`;
+  const cCount = selectedCountries.size;
+  document.getElementById('countryLabel').textContent = cCount===0?'All Countries':cCount===1?[...selectedCountries][0]:`${cCount} Countries`;
+  const prLabels = { all:'Requires PR', Yes:'📣 PR: Yes', No:'No PR' };
+  document.getElementById('requiresPRLabel').textContent = prLabels[requiresPRFilter] || 'Requires PR';
+  document.getElementById('requiresPRBtn').classList.toggle('active', requiresPRFilter !== 'all');
+  const tpLabels = { all:'Time Period', '45':'Next 45 Days', '60':'Next 60 Days', '90':'Next 90 Days' };
+  document.getElementById('timePeriodLabel').textContent = tpLabels[timePeriodDays] || 'Time Period';
+  document.getElementById('timePeriodBtn').classList.toggle('active', timePeriodDays !== 'all');
+  document.querySelectorAll('#monthMenu .dropdown-item[data-value]').forEach(i=>{
+    i.classList.toggle('selected', selectedMonths.has(i.dataset.value));
+  });
+  document.querySelectorAll('#countryMenu .dropdown-item[data-value]').forEach(i=>{
+    i.classList.toggle('selected', selectedCountries.has(i.dataset.value));
+  });
+  renderFilterBar(); renderStats(); renderMain();
+}
+
+// ── Build dropdowns ───────────────────────────────────────────────────────────
+function buildMonthDropdown() {
+  document.getElementById('monthMenu').innerHTML =
+    `<div class="dropdown-action" onclick="selectedMonths.clear();applyFilters()">Clear selection</div>
+     <hr class="dropdown-divider"/>`
+    + RAW.months.map(m=>`
+      <div class="dropdown-item" data-value="${m}">
+        <div class="check"></div><span style="flex:1">${m}</span>
+        <span class="event-count">${countEventsInMonth(m)}</span>
+      </div>`).join('');
+  document.querySelectorAll('#monthMenu .dropdown-item[data-value]').forEach(item=>
+    item.addEventListener('click', e=>{
+      e.stopPropagation();
+      const v = item.dataset.value;
+      if (selectedMonths.has(v)) selectedMonths.delete(v);
+      else { timePeriodDays='all'; document.querySelectorAll('#timePeriodMenu .dropdown-item').forEach(i=>i.classList.remove('selected')); selectedMonths.add(v); }
+      applyFilters();
+    })
+  );
+}
+
+function buildCountryDropdown() {
+  document.getElementById('countryMenu').innerHTML =
+    `<div class="dropdown-action" onclick="selectedCountries.clear();applyFilters()">Clear selection</div>
+     <hr class="dropdown-divider"/>`
+    + getAllCountries().map(c=>`
+      <div class="dropdown-item" data-value="${c}">
+        <div class="check"></div><span style="flex:1">${FLAGS[c]||'🌐'} ${c}</span>
+        <span class="event-count">${countEventsForCountry(c)}</span>
+      </div>`).join('');
+  document.querySelectorAll('#countryMenu .dropdown-item[data-value]').forEach(item=>
+    item.addEventListener('click', e=>{
+      e.stopPropagation();
+      const v = item.dataset.value;
+      if (selectedCountries.has(v)) selectedCountries.delete(v);
+      else selectedCountries.add(v);
+      applyFilters();
+    })
+  );
+}
+
+// ── Dropdown open/close ───────────────────────────────────────────────────────
+function closeAll() {
+  document.querySelectorAll('.dropdown-btn').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('open'));
+}
+function toggleDropdown(btnId,menuId) {
+  const isOpen=document.getElementById(menuId).classList.contains('open');
+  closeAll();
+  if(!isOpen){document.getElementById(btnId).classList.add('open');document.getElementById(menuId).classList.add('open');}
+}
+document.getElementById('monthBtn').addEventListener('click',   e=>{e.stopPropagation();toggleDropdown('monthBtn','monthMenu');});
+document.getElementById('countryBtn').addEventListener('click', e=>{e.stopPropagation();toggleDropdown('countryBtn','countryMenu');});
+document.getElementById('requiresPRBtn').addEventListener('click', e=>{e.stopPropagation();toggleDropdown('requiresPRBtn','requiresPRMenu');});
+document.getElementById('timePeriodBtn').addEventListener('click', e=>{e.stopPropagation();toggleDropdown('timePeriodBtn','timePeriodMenu');});
+document.addEventListener('click', closeAll);
+
+document.getElementById('tabMainCount').textContent = totalEvents(MAIN_DATA);
+document.getElementById('tabBigTicketCount').textContent = totalEvents(BIGTICKET_DATA);
+buildMonthDropdown();
+buildCountryDropdown();
+applyFilters();
+</script>
+</body>
+</html>
