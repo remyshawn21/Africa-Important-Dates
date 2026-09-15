@@ -347,9 +347,9 @@
         </button>
         <div class="dropdown-menu" id="timePeriodMenu">
           <div class="dropdown-item" data-value="all" onclick="setTimePeriod('all')">All Dates</div>
-          <div class="dropdown-item" data-value="45" onclick="setTimePeriod('45')">📅 Next 45 Days</div>
-          <div class="dropdown-item" data-value="60" onclick="setTimePeriod('60')">📅 Next 60 Days</div>
-          <div class="dropdown-item" data-value="90" onclick="setTimePeriod('90')">📅 Next 90 Days</div>
+          <div class="dropdown-item" data-value="45" onclick="setTimePeriod('45')">Next 45 Days</div>
+          <div class="dropdown-item" data-value="60" onclick="setTimePeriod('60')">Next 60 Days</div>
+          <div class="dropdown-item" data-value="90" onclick="setTimePeriod('90')">Next 90 Days</div>
         </div>
       </div>
     </div>
@@ -378,8 +378,8 @@
   <div class="legend-item"><div class="legend-dot" style="background:var(--executed)"></div> Executed</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--postponed)"></div> Postponed</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--yet)"></div> Upcoming</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--tvs-blue)"></div> 📋 Has report</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--postponed)"></div> ⚠️ Report pending</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--tvs-blue)"></div> Has report</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--postponed)"></div> Report pending</div>
 </div>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
@@ -411,7 +411,7 @@ const MAIN_DATA = {"months": ["February 2026", "March 2026", "April 2026", "May 
 const BIGTICKET_DATA = {"months": ["September 2026", "October 2026", "November 2026", "December 2026"], "data": {"November 2026": {"Ghana": [{"DateStr": "25 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ghana", "NoDay": false, "SortDate": "2026-11-25"}, {"DateStr": "25 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ghana", "NoDay": false, "SortDate": "2026-11-25"}], "Sierra Leone": [{"DateStr": "10 Nov 2026", "Event": "iQube Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Sierra Leone", "NoDay": false, "SortDate": "2026-11-10"}], "Guinea": [{"DateStr": "20 Nov 2026", "Event": "Apache 180 Refresh Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Guinea", "NoDay": false, "SortDate": "2026-11-20"}], "Nigeria": [{"DateStr": "15 Nov 2026", "Event": "EV (IQUBE, ORBITER & KING EV Maxx launch)", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Nigeria", "NoDay": false, "SortDate": "2026-11-15"}], "Kenya": [{"DateStr": "08 Nov 2026", "Event": "HLX 100 CC AGD - Nyanza", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-08"}, {"DateStr": "14 Nov 2026", "Event": "HLX 100 CC AGD - Coast", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-14"}, {"DateStr": "16 Nov 2026", "Event": "HLX 100 CC AGD - Rift / Western", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-11-16"}], "Egypt": [{"DateStr": "10 Nov 2026", "Event": "ARE", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Egypt", "NoDay": false, "SortDate": "2026-11-10"}], "Tunisia": [{"DateStr": "25 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Tunisia", "NoDay": false, "SortDate": "2026-11-25"}], "Ethiopia": [{"DateStr": "18 Nov 2026", "Event": "EV Portfolio Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ethiopia", "NoDay": false, "SortDate": "2026-11-18"}], "Malawi": [{"DateStr": "12 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Malawi", "NoDay": false, "SortDate": "2026-11-12"}], "Zambia": [{"DateStr": "21 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Zambia", "NoDay": false, "SortDate": "2026-11-21"}], "DRC": [{"DateStr": "24 Nov 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "DRC", "NoDay": false, "SortDate": "2026-11-24"}], "Mauritius": [{"DateStr": "03 Nov 2026", "Event": "Market Entry", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Brand Launch", "RequiresPR": "Yes", "Country": "Mauritius", "NoDay": false, "SortDate": "2026-11-03"}], "South Africa": [{"DateStr": "16 Nov 2026", "Event": "RTR 310 Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-16"}, {"DateStr": "27 Nov 2026", "Event": "Raider I-Go, NTORQ 150 Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "South Africa", "NoDay": false, "SortDate": "2026-11-27"}]}, "October 2026": {"Ivory Coast": [{"DateStr": "20 Oct 2026", "Event": "Apache 180 Refresh Launch, Neo Dual tone Launch & Korhogo Branch Inauguration", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Ivory Coast", "NoDay": false, "SortDate": "2026-10-20"}], "Cameroon": [{"DateStr": "25 Oct 2026", "Event": "2nd Distributor Appointment, Showroom Launch & PR Amplification", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Cameroon", "NoDay": false, "SortDate": "2026-10-25"}], "Egypt": [{"DateStr": "10 Oct 2026", "Event": "AOG Kickoff", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Egypt", "NoDay": false, "SortDate": "2026-10-10"}], "Angola": [{"DateStr": "27 Oct 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Angola", "NoDay": false, "SortDate": "2026-10-27"}], "Madagascar": [{"DateStr": "22 Oct 2026", "Event": "Jupiter & Ronin Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Madagascar", "NoDay": false, "SortDate": "2026-10-22"}], "Tanzania": [{"DateStr": "28 Oct 2026", "Event": "3W Queen Ride Project", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "CSR", "RequiresPR": "Yes", "Country": "Tanzania", "NoDay": false, "SortDate": "2026-10-28"}], "Kenya": [{"DateStr": "26 Oct 2026", "Event": "Antenna Dealer meet", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Experiential Event - Community Building", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-10-26"}, {"DateStr": "28 Oct 2026", "Event": "Nyeri Polytechnic College  - PTC Center", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-10-28"}], "Guinea": [{"DateStr": "25 Oct 2026", "Event": "Apache rtr 180 Launch", "Status": "Yet to Happen", "Description": "Launch of Apache in the market", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Guinea", "NoDay": false, "SortDate": "2026-10-25"}]}, "December 2026": {"Mauritania": [{"DateStr": "06 Dec 2026", "Event": "Armado Launch", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Product Launch", "RequiresPR": "Yes", "Country": "Mauritania", "NoDay": false, "SortDate": "2026-12-06"}]}, "September 2026": {"Kenya": [{"DateStr": "25 Sep 2026", "Event": "Meru Store Opening", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Network Expansion", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-25"}, {"DateStr": "29 Sep 2026", "Event": "SOW vehicle Launch -10 Units", "Status": "Yet to Happen", "Description": "", "DatePassed": false, "CategoryOfEvent": "Service Activity", "RequiresPR": "Yes", "Country": "Kenya", "NoDay": false, "SortDate": "2026-09-29"}]}}};
 const FLAGS = {
   DRC:'🇨🇩', Egypt:'🇪🇬', Kenya:'🇰🇪', Madagascar:'🇲🇬', Morocco:'🇲🇦',
-  Mozambique:'🇲🇿', Regional:'🌍', 'South Africa':'🇿🇦', Tanzania:'🇹🇿',
+  Mozambique:'🇲🇿', Regional:'', 'South Africa':'🇿🇦', Tanzania:'🇹🇿',
   Tunisia:'🇹🇳', Uganda:'🇺🇬', Zambia:'🇿🇲', Mauritius:'🇲🇺',
   Ghana:'🇬🇭', 'Sierra Leone':'🇸🇱', Guinea:'🇬🇳', 'Ivory Coast':'🇨🇮',
   Nigeria:'🇳🇬', Cameroon:'🇨🇲', Mauritania:'🇲🇷', Angola:'🇦🇴',
@@ -530,7 +530,7 @@ function renderFilterBar() {
   noF.style.display='none';
   if (timePeriodDays !== 'all') {
     const t=document.createElement('div'); t.className='filter-tag';
-    t.innerHTML=`📅 Next ${timePeriodDays} Days <button onclick="setTimePeriod('all')">✕</button>`;
+    t.innerHTML=`Next ${timePeriodDays} Days <button onclick="setTimePeriod('all')">✕</button>`;
     bar.appendChild(t);
   }
   if (requiresPRFilter !== 'all') {
@@ -541,12 +541,12 @@ function renderFilterBar() {
   }
   selectedMonths.forEach(m=>{
     const t=document.createElement('div'); t.className='filter-tag';
-    t.innerHTML=`📅 ${m} <button onclick="removeMonth('${m}')">✕</button>`;
+    t.innerHTML=`${m} <button onclick="removeMonth('${m}')">✕</button>`;
     bar.appendChild(t);
   });
   selectedCountries.forEach(c=>{
     const t=document.createElement('div'); t.className='filter-tag blue';
-    t.innerHTML=`${FLAGS[c]||'🌐'} ${c} <button onclick="removeCountry('${c.replace(/'/g,"\'")}')">✕</button>`;
+    t.innerHTML=`${FLAGS[c]||''} ${c} <button onclick="removeCountry('${c.replace(/'/g,"\'")}')">✕</button>`;
     bar.appendChild(t);
   });
 }
@@ -629,7 +629,7 @@ function renderCardsView(filtered) {
   RAW.months.filter(m=>byMonth[m]).forEach(m => {
     const isTBC = m === 'Unscheduled / TBC';
     const titleHtml = isTBC
-      ? `<div class="month-title">🕓 Unscheduled <span class="year">/ TBC</span></div>`
+      ? `<div class="month-title">Unscheduled <span class="year">/ TBC</span></div>`
       : (()=>{ const [mon,yr]=m.split(' '); return `<div class="month-title">${mon} <span class="year">${yr}</span></div>`; })();
     html+=`<div class="month-section">
       ${titleHtml}
@@ -637,7 +637,7 @@ function renderCardsView(filtered) {
         ${Object.entries(byMonth[m]).map(([country,events])=>`
           <div class="country-card">
             <div class="country-header">
-              <div class="country-flag">${FLAGS[country]||'🌐'}</div>
+              <div class="country-flag">${FLAGS[country]||''}</div>
               <div class="country-name">${country}</div>
               <div class="country-event-count">${events.length} event${events.length!==1?'s':''}</div>
             </div>
@@ -648,7 +648,7 @@ function renderCardsView(filtered) {
                 const warnDesc = e.DatePassed && !e.Description && e.Status.toLowerCase().includes('executed');
                 const rowClass = hasDesc?'event-row has-desc':warnDesc?'event-row warn-desc':'event-row';
                 const onclick  = hasDesc?`onclick="openModal('${country.replace(/'/g,"\'")}', RAW.data['${m}']['${country}'][${origIdx}])"` :'';
-                const indicator= hasDesc?`<div class="desc-indicator has">📋 Report</div>`:warnDesc?`<div class="desc-indicator warn">⚠️ Add report</div>`:'';
+                const indicator= hasDesc?`<div class="desc-indicator has">Report</div>`:warnDesc?`<div class="desc-indicator warn">Add report</div>`:'';
                 const catLabel = e.CategoryOfEvent ? `<div class="event-category">${e.CategoryOfEvent}</div>` : '';
                 const dateDisplay = e.NoDay && e.DateStr!=='TBC' ? '~'+e.DateStr : (e.DateStr||'—');
                 return `<div class="${rowClass}" ${onclick}>
@@ -687,7 +687,7 @@ function renderPRTableView(filtered) {
       <td class="date-col">${e.DateStr||'—'}</td>
       <td class="cat-col"><span class="cat-chip">${e.CategoryOfEvent||'—'}</span></td>
       <td>${e.Event}</td>
-      <td class="country-col">${FLAGS[e._country]||'🌐'} ${e._country}</td>
+      <td class="country-col">${FLAGS[e._country]||''} ${e._country}</td>
     </tr>`).join('');
   return `<div class="pr-section">
     ${exportBar}
@@ -758,7 +758,7 @@ function buildCountryDropdown() {
      <hr class="dropdown-divider"/>`
     + getAllCountries().map(c=>`
       <div class="dropdown-item" data-value="${c}">
-        <div class="check"></div><span style="flex:1">${FLAGS[c]||'🌐'} ${c}</span>
+        <div class="check"></div><span style="flex:1">${FLAGS[c]||''} ${c}</span>
         <span class="event-count">${countEventsForCountry(c)}</span>
       </div>`).join('');
   document.querySelectorAll('#countryMenu .dropdown-item[data-value]').forEach(item=>
